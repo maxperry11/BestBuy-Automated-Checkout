@@ -55,6 +55,14 @@ How to use:
 4) The bot will constantly refresh until the items are available.
 5) Once an item is added to the cart, the bot will send an email alert to notify you to complete the checkout process.
 
+### How to run the `setup.sh` script to install required libraries:
+
+1) Clone the repository to your local machine.
+2) Open a terminal and navigate to the root directory of the repository.
+3) Run the following command to make the `setup.sh` script executable: `chmod +x setup.sh`.
+4) Run the `setup.sh` script to install the required libraries: `./setup.sh`.
+5) Follow the instructions in the script to complete the installation process.
+
 Picture of code working:
 
 ![BestBuy Bot Succsess](https://user-images.githubusercontent.com/55165705/98168055-df014300-1e9e-11eb-9eeb-f8911be903d2.JPG)

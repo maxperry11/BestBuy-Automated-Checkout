@@ -53,12 +53,10 @@ class BBYbot():
 		searchbar.submit()
 
 	def in_stock(self):
-		time.sleep(2)
+		time.sleep(0.5)
 		try:
 			
 			item = self.driver.find_element_by_class_name('btn-lg')
-			#webdriver.ActionChains(self.driver).click_and_hold(self.driver.find_elements_by_class_name('btn btn-primary btn-lg btn-block btn-leading-ficon add-to-cart-button')).perform()
-			#webdriver.ActionChains(self.driver).release().preform()
 			print("In stock!")
 			return True
 			
@@ -69,10 +67,10 @@ class BBYbot():
 
 	def add_toCart(self, incart):
 		try:
-			time.sleep(2)
+			time.sleep(0.5)
 			item =self.driver.find_element_by_class_name('btn-lg')
 			item.click()
-			time.sleep(2)							
+			time.sleep(0.5)							
 			go_to_cart_button= self.driver.find_element_by_class_name("go-to-cart-button")
 			
 			go_to_cart_button.click()
