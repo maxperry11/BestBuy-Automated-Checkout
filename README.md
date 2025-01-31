@@ -32,6 +32,28 @@ How to use:
 1) Follow the steps above to set up the bot.
 2) Edit the code and change the field of bot.searchtag() to contain the SKU "6614262".
 3) Run the bot and it will search for the pokemon journeys booster boxes and attempt to preorder it.
+4) The bot will constantly refresh until the preorder button is available.
+5) Once the item is added to the cart, the bot will send an email alert to notify you to complete the checkout process.
+
+### Full step by step guide to setting it up locally:
+
+1) Clone the repository to your local machine.
+2) Install the required libraries: Selenium, Tkinter, and Chrome webdriver.
+3) Rename the "config_" file to "config".
+4) Save the Chrome webdriver in the same directory as BestBuybot.py.
+5) Open the config file with a text editor and fill in the parameters with your information, if you are an employee of BestBuy there is a field for your employee number.
+6) Edit the code and change the field of bot.searchtag() to contain the SKU that you want, do note that this field takes a string and not an integer.
+7) Run the bot and it will search for the item and attempt to add it to the cart.
+8) The bot will constantly refresh until the item is available.
+9) Once the item is added to the cart, the bot will send an email alert to notify you to complete the checkout process.
+
+### How to use the `monitor_skus` method to monitor multiple SKUs:
+
+1) Follow the steps above to set up the bot.
+2) Edit the code and change the `skus` list to include multiple SKUs. For example: `skus = ["6614262", "1234567", "8901234"]`.
+3) Run the bot and it will monitor multiple SKUs simultaneously, increasing the chances of detecting stock availability for different items.
+4) The bot will constantly refresh until the items are available.
+5) Once an item is added to the cart, the bot will send an email alert to notify you to complete the checkout process.
 
 Picture of code working:
 

@@ -10,6 +10,7 @@ import tkinter as tk
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from concurrent.futures import ThreadPoolExecutor
 
 class BBYbot():
 	def __init__(self,config):
@@ -52,7 +53,7 @@ class BBYbot():
 		searchbar.submit()
 
 	def in_stock(self):
-		time.sleep(5)
+		time.sleep(2)
 		try:
 			
 			item = self.driver.find_element_by_class_name('btn-lg')
@@ -68,10 +69,10 @@ class BBYbot():
 
 	def add_toCart(self, incart):
 		try:
-			time.sleep(3)
+			time.sleep(2)
 			item =self.driver.find_element_by_class_name('btn-lg')
 			item.click()
-			time.sleep(5)							
+			time.sleep(2)							
 			go_to_cart_button= self.driver.find_element_by_class_name("go-to-cart-button")
 			
 			go_to_cart_button.click()
@@ -110,6 +111,22 @@ class BBYbot():
 		self.driver.find_element_by_class_name("c-modal-close-icon").click()
 	def close(self):
 		self.driver.close()
+
+	def monitor_skus(self, skus):
+		with ThreadPoolExecutor(max_workers=len(skus)) as executor:
+			for sku in skus:
+				executor.submit(self.monitor_sku, sku)
+
+	def monitor_sku(self, sku):
+		while True:
+			self.searchtag(sku)
+			instock = self.in_stock()
+			incart = False
+			if instock:
+				while not incart:
+					incart = self.add_toCart(incart)
+			time.sleep(5)
+
 def getinput():
 	sku_num=skunumber.get()
 	print(sku_num)
@@ -128,14 +145,7 @@ except:
 	time.sleep(3)
 	bot.Login()
 time.sleep(4)
-bot.searchtag("6614262")
-instock= bot.in_stock()
-incart=False
-if (instock==True):
-	while(incart != True):
-	 	incart=bot.add_toCart(incart)
-print("In cart!")
-time.sleep(1)
-
+skus = ["6614262"]
+bot.monitor_skus(skus)
 print("compiled")
 bot.close()
